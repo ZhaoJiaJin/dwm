@@ -1,5 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
+#include "color.h"
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gaps between windows */
@@ -18,12 +19,11 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
-static const char *colors[][3]      = {
-	/*               fg         bg         border   */
+/*static const char *colors[][3]      = {
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
-};
+};*/
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -69,9 +69,13 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromecmd[] = { "google-chrome-stable", "--force-device-scale-factor=1.3", NULL };
 static const char *roficmd[] = { "rofi", "-show", "run",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
+static const char *rofitranscmd[] = { "transrofi", NULL };
+static const char *rofidircmd[] = { "rofi", "-show", "file-browser", "-file-browser-depth", "2",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
+
 static const char *togglemusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome", "play-pause", NULL };
 static const char *nextmusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome", "next", NULL };
 static const char *premusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome", "previous", NULL };
+static const char *mydict[] = { "mydict", NULL };
 
 static const char *incvol[] = { "incvol", NULL };
 static const char *decvol[] = { "decvol", NULL };
@@ -81,6 +85,9 @@ static const char *decbl[] = { "decbl", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
+	{ MODKEY,                       XK_t,      spawn,          {.v = rofitranscmd} },
+	{ MODKEY|ShiftMask,                       XK_t,      spawn,          {.v = mydict} },
+	{ MODKEY,                       XK_x,      spawn,          {.v = rofidircmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
@@ -94,7 +101,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,             XK_c,      spawn,     {.v = chromecmd} },
 	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[1]} },
 	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	//{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
@@ -117,6 +124,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 	{ 0,             XF86XK_AudioLowerVolume,      spawn,           {.v = decvol} },
+	{ 0,             XF86XK_AudioRaiseVolume,      spawn,           {.v = incvol} },
+	{ ShiftMask,             XK_Down,      spawn,           {.v = decvol} },
+	{ ShiftMask,             XK_Up,      spawn,           {.v = incvol} },
 	{ 0,             XF86XK_AudioRaiseVolume,      spawn,           {.v = incvol} },
 	{ 0,             XF86XK_AudioMute,      spawn,           {.v = mutvol} },
 	{ 0,             XF86XK_AudioPlay,      spawn,           {.v = togglemusic} },

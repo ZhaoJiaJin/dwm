@@ -1,0 +1,1 @@
+/home/jin/.cache/wal/colors-wal-dwm.h
