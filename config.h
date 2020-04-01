@@ -6,8 +6,8 @@ static const unsigned int gappx     = 6;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "Monaco for Powerline:size=10" };
+static const char dmenufont[]       = "Monaco for Powerline:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -64,16 +64,20 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromecmd[] = { "google-chrome-stable", "--force-device-scale-factor=1.3", NULL };
 static const char *roficmd[] = { "rofi", "-show", "run",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
+static const char *togglemusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome", "play-pause", NULL };
+static const char *nextmusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome", "next", NULL };
+static const char *premusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome", "previous", NULL };
 
 static const char *incvol[] = { "incvol", NULL };
 static const char *decvol[] = { "decvol", NULL };
+static const char *mutvol[] = { "mutvol", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_q,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_a,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
@@ -107,6 +111,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 	{ 0,             XF86XK_AudioLowerVolume,      spawn,           {.v = decvol} },
 	{ 0,             XF86XK_AudioRaiseVolume,      spawn,           {.v = incvol} },
+	{ 0,             XF86XK_AudioMute,      spawn,           {.v = mutvol} },
+	{ 0,             XF86XK_AudioPlay,      spawn,           {.v = togglemusic} },
+	{ Mod1Mask,             XK_p,      spawn,           {.v = togglemusic} },
+	{ Mod1Mask,             XK_k,      spawn,           {.v = nextmusic} },
+	{ Mod1Mask,             XK_j,      spawn,           {.v = premusic} },
 };
 
 /* button definitions */
