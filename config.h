@@ -131,8 +131,8 @@ static Key keys[] = {
 	{ 0,             XF86XK_AudioMute,      spawn,           {.v = mutvol} },
 	{ 0,             XF86XK_AudioPlay,      spawn,           {.v = togglemusic} },
 	{ Mod1Mask,             XK_p,      spawn,           {.v = togglemusic} },
-	{ Mod1Mask,             XK_k,      spawn,           {.v = nextmusic} },
-	{ Mod1Mask,             XK_j,      spawn,           {.v = premusic} },
+	{ Mod1Mask,             XK_Right,      spawn,           {.v = nextmusic} },
+	{ Mod1Mask,             XK_Left,      spawn,           {.v = premusic} },
 	{ 0,             XF86XK_MonBrightnessUp,      spawn,           {.v = incbl} },
 	{ 0,             XF86XK_MonBrightnessDown,      spawn,           {.v = decbl} },
 };
