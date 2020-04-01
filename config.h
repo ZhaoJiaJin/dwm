@@ -2,7 +2,7 @@
 #include <X11/XF86keysym.h>
 #include "color.h"
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx     = 3;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
@@ -11,8 +11,8 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Monaco for Powerline:size=10" };
+static const int topbar             = 0;        /* 0 means bottom bar */
+static const char *fonts[]          = { "Monaco for Powerline:size=10","FontAwesome:size=10" };
 static const char dmenufont[]       = "Monaco for Powerline:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -45,10 +45,10 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "",      tile },    /* first entry is default */
 	//{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	{ "HHH",      grid },
+	{ "",      grid },
 	{ NULL,       NULL },
 };
 
@@ -82,6 +82,10 @@ static const char *decvol[] = { "decvol", NULL };
 static const char *mutvol[] = { "mutvol", NULL };
 static const char *incbl[] = { "incbl", NULL };
 static const char *decbl[] = { "decbl", NULL };
+static const char *delwall[] = { "del_wallpaper", NULL };
+static const char *ssfull[] = { "gnome-screenshot", NULL };
+static const char *ssi[] = { "gnome-screenshot", "-i", NULL };
+static const char *mylock[] = { "mylock", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
@@ -102,6 +106,7 @@ static Key keys[] = {
 	{ MODKEY,             XK_c,      spawn,     {.v = chromecmd} },
 	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[1]} },
+	{ MODKEY|ShiftMask,                       XK_w,      spawn,      {.v = delwall} },
 	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	//{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
@@ -135,6 +140,10 @@ static Key keys[] = {
 	{ Mod1Mask,             XK_Left,      spawn,           {.v = premusic} },
 	{ 0,             XF86XK_MonBrightnessUp,      spawn,           {.v = incbl} },
 	{ 0,             XF86XK_MonBrightnessDown,      spawn,           {.v = decbl} },
+	{ MODKEY|ShiftMask,                       XK_w,      spawn,      {.v = delwall} },
+	{ MODKEY|ControlMask,                       XK_f,      spawn,      {.v = ssfull} },
+	{ MODKEY|ControlMask,                       XK_i,      spawn,      {.v = ssi} },
+	{ MODKEY|ShiftMask,                       XK_l,      spawn,      {.v = mylock} },
 };
 
 /* button definitions */
