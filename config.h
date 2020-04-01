@@ -76,6 +76,8 @@ static const char *premusic[] = { "playerctl", "-p", "spotify,cmus,ncspot,chrome
 static const char *incvol[] = { "incvol", NULL };
 static const char *decvol[] = { "decvol", NULL };
 static const char *mutvol[] = { "mutvol", NULL };
+static const char *incbl[] = { "incbl", NULL };
+static const char *decbl[] = { "decbl", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
@@ -121,6 +123,8 @@ static Key keys[] = {
 	{ Mod1Mask,             XK_p,      spawn,           {.v = togglemusic} },
 	{ Mod1Mask,             XK_k,      spawn,           {.v = nextmusic} },
 	{ Mod1Mask,             XK_j,      spawn,           {.v = premusic} },
+	{ 0,             XF86XK_MonBrightnessUp,      spawn,           {.v = incbl} },
+	{ 0,             XF86XK_MonBrightnessDown,      spawn,           {.v = decbl} },
 };
 
 /* button definitions */
