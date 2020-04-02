@@ -1572,8 +1572,13 @@ resizeclient(Client *c, int x, int y, int w, int h)
 
 	/* Get number of clients for the selected monitor */
 	for (n = 0, nbc = nexttiled(selmon->clients); nbc; nbc = nexttiled(nbc->next), n++);
-    if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1) 
+    if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1){ 
+        //c->w = wc.width+wc.border_width*2;
+        //c->h = wc.width+wc.border_width*2;
+    	c->oldw = c->w; c->w = wc.width = w + 2*borderpx;
+    	c->oldh = c->h; c->h = wc.height = h + 2*borderpx;
 	    wc.border_width = 0;
+    }
 	XConfigureWindow(dpy, c->win, CWX|CWY|CWWidth|CWHeight|CWBorderWidth, &wc);
 	configure(c);
 	XSync(dpy, False);
