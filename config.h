@@ -142,8 +142,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,                       XK_f,      spawn,      {.v = ssfull} },
 	{ MODKEY|ControlMask,                       XK_i,      spawn,      {.v = ssi} },
 	{ MODKEY|ShiftMask,                       XK_l,      spawn,      {.v = mylock} },
-	{ MODKEY,             XK_w,      fullscreen,     {0} },
-	//{ MODKEY,                       XK_w,      setmono,      {0} },
+	{ MODKEY,             XK_f,      fullscreen,     {0} },
+	{ MODKEY,                       XK_w,      setlayout,      {.v=&layouts[2]} },
 };
 
 /* button definitions */
