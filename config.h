@@ -12,7 +12,7 @@ static const int showsystray        = 1;     /* 0 means no systray */
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Monaco for Powerline:size=10","FontAwesome:size=10" };
+static const char *fonts[]          = { "Monaco for Powerline:size=10","FontAwesome:size=11","Wuncon Siji:size=11" };
 static const char dmenufont[]       = "Monaco for Powerline:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
@@ -45,10 +45,10 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
+	{ "",      tile },    /* first entry is default */
 	//{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
 	{ "",      grid },
+	{ "[M]",      monocle },
 	{ NULL,       NULL },
 };
 
@@ -105,8 +105,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,             XK_c,      spawn,     {.v = chromecmd} },
 	//{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_w,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY|ShiftMask,                       XK_w,      spawn,      {.v = delwall} },
 	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	//{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
@@ -144,6 +142,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,                       XK_f,      spawn,      {.v = ssfull} },
 	{ MODKEY|ControlMask,                       XK_i,      spawn,      {.v = ssi} },
 	{ MODKEY|ShiftMask,                       XK_l,      spawn,      {.v = mylock} },
+	{ MODKEY,             XK_w,      fullscreen,     {0} },
+	//{ MODKEY,                       XK_w,      setmono,      {0} },
 };
 
 /* button definitions */
