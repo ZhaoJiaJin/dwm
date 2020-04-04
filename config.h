@@ -43,11 +43,11 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
+static const Layout gridlayout = { "",      grid };
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "",      tile },    /* first entry is default */
 	//{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "",      grid },
 	{ "[M]",      monocle },
 	{ NULL,       NULL },
 };
@@ -108,6 +108,7 @@ static Key keys[] = {
 	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
 	//{ MODKEY,                       XK_space,  setlayout,      {0} },
 	//{ MODKEY|ControlMask,		XK_comma,  cyclelayout,    {.i = -1 } },
+	{ MODKEY,		XK_w,  cyclelayout,    {.i = -1 } },
 	{ MODKEY,           XK_space, cyclelayout,    {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -145,7 +146,8 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,                       XK_i,      spawn,      {.v = ssi} },
 	{ MODKEY|ShiftMask,                       XK_l,      spawn,      {.v = mylock} },
 	{ MODKEY,             XK_f,      fullscreen,     {0} },
-	{ MODKEY,                       XK_w,      setlayout,      {.v=&layouts[2]} },
+	//{ MODKEY,                       XK_w,      setlayout,      {.v=&layouts[2]} },
+	{ MODKEY,                       XK_g,      setlayout,      {.v=&gridlayout} },
 };
 
 /* button definitions */

@@ -13,6 +13,6 @@ static const char urg_border[] = "#dc322f";
 static const char *colors[][3]      = {
     /*               fg           bg         border                         */
     [SchemeNorm] = { norm_fg,     norm_bg,   norm_border }, // unfocused wins
-    [SchemeSel]  = { sel_fg,      sel_bg,    sel_border },  // the focused win
+    [SchemeSel]  = { sel_fg,      sel_bg,    sel_bg},  // the focused win
     [SchemeHid] =  { urg_fg,      urg_bg,    urg_border },
 };
