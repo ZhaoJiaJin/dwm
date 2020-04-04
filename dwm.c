@@ -1573,7 +1573,7 @@ resizeclient(Client *c, int x, int y, int w, int h)
 
 	/* Get number of clients for the selected monitor */
 	for (n = 0, nbc = nexttiled(selmon->clients); nbc; nbc = nexttiled(nbc->next), n++);
-    if (selmon->lt[selmon->sellt]->arrange == monocle || n == 1){ 
+    if (!c->isfloating && (selmon->lt[selmon->sellt]->arrange == monocle || n == 1)) {
         //c->w = wc.width+wc.border_width*2;
         //c->h = wc.width+wc.border_width*2;
     	c->oldw = c->w; c->w = wc.width = w + 2*borderpx;
