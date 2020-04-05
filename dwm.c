@@ -1777,17 +1777,7 @@ setfocus(Client *c)
 void
 setfullscreen(Client *c, int fullscreen)
 {
-	if (fullscreen && !c->isfullscreen) {
-		XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
-			PropModeReplace, (unsigned char*)&netatom[NetWMFullscreen], 1);
-		c->isfullscreen = 1;
-	    configure(c);
-	} else if (!fullscreen && c->isfullscreen){
-		XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
-			PropModeReplace, (unsigned char*)0, 0);
-		c->isfullscreen = 0;
-	    configure(c);
-	}
+	configure(c);
 }
 
 Layout *last_layout;
