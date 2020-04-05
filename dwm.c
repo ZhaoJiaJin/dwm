@@ -1781,16 +1781,8 @@ setfullscreen(Client *c, int fullscreen)
 		XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
 			PropModeReplace, (unsigned char*)&netatom[NetWMFullscreen], 1);
 		c->isfullscreen = 1;
-        //c->oldstate = c->isfloating;
 		c->oldbw = c->bw;
-		//c->bw = 0;
-		//c->isfloating = 1;
-        if (selmon->showbar){
-		    resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh - 2*c->bw - bh);
-        }else{
-		    resizeclient(c, c->mon->mx, c->mon->my, c->mon->mw, c->mon->mh - 2*c->bw);
-        }
-		XRaiseWindow(dpy, c->win);
+		resizeclient(c, c->x, c->y, c->w, c->h);
 	} else if (!fullscreen && c->isfullscreen){
 		XChangeProperty(dpy, c->win, netatom[NetWMState], XA_ATOM, 32,
 			PropModeReplace, (unsigned char*)0, 0);
