@@ -86,11 +86,13 @@ static const char *delwall[] = { "del_wallpaper", NULL };
 static const char *ssfull[] = { "gnome-screenshot", NULL };
 static const char *ssi[] = { "gnome-screenshot", "-i", NULL };
 static const char *mylock[] = { "mylock", NULL };
+static const char *mynote[] = { "save2note", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
 	{ MODKEY,                       XK_t,      spawn,          {.v = rofitranscmd} },
-	{ MODKEY|ShiftMask,                       XK_t,      spawn,          {.v = mydict} },
+	{ MODKEY|ControlMask,                       XK_t,      spawn,          {.v = mydict} },
+	{ MODKEY,                       XK_s,      spawn,          {.v = mynote} },
 	{ MODKEY,                       XK_x,      spawn,          {.v = rofidircmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
