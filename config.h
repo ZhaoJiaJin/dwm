@@ -95,7 +95,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_s,      spawn,          {.v = mynote} },
 	{ MODKEY,                       XK_x,      spawn,          {.v = rofidircmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	//{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_q,      incnmaster,     {.i = +1 } },
@@ -150,6 +150,7 @@ static Key keys[] = {
 	{ MODKEY,             XK_f,      fullscreen,     {0} },
 	//{ MODKEY,                       XK_w,      setlayout,      {.v=&layouts[2]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v=&gridlayout} },
+	{ 0,             XK_Super_L,      holdbar,           {0} },
 };
 
 /* button definitions */
