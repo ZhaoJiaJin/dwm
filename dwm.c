@@ -2604,13 +2604,12 @@ view(const Arg *arg)
 	selmon->lt[selmon->sellt] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt];
 	selmon->lt[selmon->sellt^1] = selmon->pertag->ltidxs[selmon->pertag->curtag][selmon->sellt^1];
 
-	if (selmon->showbar != selmon->pertag->showbars[selmon->pertag->curtag])
-		togglebar(NULL);
-    if (oldshowbar != selmon->showbar){
-        oldshowbar = selmon->showbar;
+    oldshowbar = selmon->pertag->showbars[selmon->pertag->curtag];
+    if (selmon->pertag->showbars[selmon->pertag->curtag] == 0){
+        updateholdbarpos(selmon);
+    }else{
         updatebarpos(selmon);
     }
-
 
 	focus(NULL);
 	arrange(selmon);
