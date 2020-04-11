@@ -237,7 +237,7 @@ static void sendmon(Client *c, Monitor *m);
 static void setclientstate(Client *c, long state);
 static void setfocus(Client *c);
 static void setfullscreen(Client *c, int fullscreen);
-static void fullscreen(const Arg *arg);
+//static void fullscreen(const Arg *arg);
 static void setlayout(const Arg *arg);
 static void setmfact(const Arg *arg);
 static void setup(void);
@@ -1826,7 +1826,7 @@ setfullscreen(Client *c, int fullscreen)
 	configure(c);
 }
 
-Layout *last_layout;
+/*Layout *last_layout;
 void
 fullscreen(const Arg *arg)
 {
@@ -1838,7 +1838,7 @@ fullscreen(const Arg *arg)
 	}
 	togglebar(arg);
 }
-
+*/
 
 void
 setlayout(const Arg *arg)
