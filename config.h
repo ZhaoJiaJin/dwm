@@ -151,6 +151,7 @@ static Key keys[] = {
 	//{ MODKEY,                       XK_w,      setlayout,      {.v=&layouts[2]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v=&gridlayout} },
 	{ 0,             XK_Super_L,      holdbar,           {0} },
+	{ MODKEY,                       XK_r,     xrdb,           {.v = NULL } },
 };
 
 /* button definitions */
