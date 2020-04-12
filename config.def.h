@@ -11,19 +11,9 @@ static const int systraypinningfailfirst = 1;   /* 1: if pinning fails, display 
 static const int showsystray        = 1;     /* 0 means no systray */
 
 static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 0;        /* 0 means bottom bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "Monaco for Powerline:size=10","FontAwesome:size=11","Wuncon Siji:size=11" };
 static const char dmenufont[]       = "Monaco for Powerline:size=10";
-static const char col_gray1[]       = "#222222";
-static const char col_gray2[]       = "#444444";
-static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#005577";
-/*static const char *colors[][3]      = {
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-	[SchemeHid]  = { col_cyan,  col_gray1, col_cyan  },
-};*/
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -64,8 +54,8 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+//static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromecmd[] = { "google-chrome-stable", "--force-device-scale-factor=1.3", NULL };
 static const char *roficmd[] = { "rofi", "-show", "run",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
@@ -86,14 +76,16 @@ static const char *delwall[] = { "del_wallpaper", NULL };
 static const char *ssfull[] = { "gnome-screenshot", NULL };
 static const char *ssi[] = { "gnome-screenshot", "-i", NULL };
 static const char *mylock[] = { "mylock", NULL };
+static const char *mynote[] = { "save2note", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
 	{ MODKEY,                       XK_t,      spawn,          {.v = rofitranscmd} },
-	{ MODKEY|ShiftMask,                       XK_t,      spawn,          {.v = mydict} },
+	{ MODKEY|ControlMask,                       XK_t,      spawn,          {.v = mydict} },
+	{ MODKEY,                       XK_s,      spawn,          {.v = mynote} },
 	{ MODKEY,                       XK_x,      spawn,          {.v = rofidircmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
+	{ Mod1Mask,                       XK_f,      togglebar,      {0} },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_q,      incnmaster,     {.i = +1 } },
@@ -145,9 +137,11 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,                       XK_f,      spawn,      {.v = ssfull} },
 	{ MODKEY|ControlMask,                       XK_i,      spawn,      {.v = ssi} },
 	{ MODKEY|ShiftMask,                       XK_l,      spawn,      {.v = mylock} },
-	{ MODKEY,             XK_f,      fullscreen,     {0} },
+	//{ MODKEY,             XK_f,      fullscreen,     {0} },
 	//{ MODKEY,                       XK_w,      setlayout,      {.v=&layouts[2]} },
 	{ MODKEY,                       XK_g,      setlayout,      {.v=&gridlayout} },
+	{ 0,             XK_Super_L,      holdbar,           {0} },
+	{ MODKEY,                       XK_r,     xrdb,           {.v = NULL } },
 };
 
 /* button definitions */
