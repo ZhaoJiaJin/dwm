@@ -86,6 +86,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_x,      spawn,          {.v = rofidircmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ Mod1Mask,                       XK_f,      togglebar,      {0} },
+	{ Mod1Mask,                       XK_Tab,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_q,      incnmaster,     {.i = +1 } },
