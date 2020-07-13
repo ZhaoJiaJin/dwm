@@ -12,7 +12,7 @@ static const int showsystray        = 1;     /* 0 means no systray */
 
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 0;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Monaco for Powerline:size=10","FontAwesome:size=11","Wuncon Siji:size=11" };
+static const char *fonts[]          = { "Monaco for Powerline:size=10","Twitter Color Emoji:size=11"};
 static const char dmenufont[]       = "Monaco for Powerline:size=10";
 
 /* tagging */
@@ -33,10 +33,10 @@ static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 
-static const Layout gridlayout = { "",      grid };
+static const Layout gridlayout = { "#",      grid };
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "",      tile },    /* first entry is default */
+	{ "[]=",      tile },    /* first entry is default */
 	//{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 	{ NULL,       NULL },
@@ -58,7 +58,7 @@ static const Layout layouts[] = {
 //static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *chromecmd[] = { "google-chrome-stable", "--force-device-scale-factor=1.3", NULL };
-static const char *roficmd[] = { "rofi", "-show", "run",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
+static const char *roficmd[] = { "rofi", "-show", "run","-modi", "run,emoji,drun",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
 static const char *rofitranscmd[] = { "transrofi", NULL };
 static const char *rofidircmd[] = { "rofi", "-show", "file-browser", "-file-browser-depth", "2",  "-theme", "themes/appsmenu.rasi", "-location", "8", NULL };
 
@@ -77,6 +77,8 @@ static const char *ssfull[] = { "gnome-screenshot", NULL };
 static const char *ssi[] = { "gnome-screenshot", "-i", NULL };
 static const char *mylock[] = { "mylock", NULL };
 static const char *mynote[] = { "save2note", NULL };
+static const char *toggleck[] = { "toggleck", NULL };
+static const char *updateck[] = { "updateck", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
@@ -153,7 +155,8 @@ static Button buttons[] = {
 	//{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
 	{ ClkWinTitle,          0,              Button1,        togglewin,      {0} },
 	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
+	{ ClkStatusText,        0,              Button3,        spawn,          {.v = toggleck} },
+	{ ClkStatusText,        0,              Button1,        spawn,          {.v = updateck} },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
