@@ -309,6 +309,7 @@ static int screen;
 static int sw, sh;           /* X display screen geometry width, height */
 static int bh, blw = 0;      /* bar geometry */
 static int lrpad;            /* sum of left and right padding for text */
+static int lastfocus = 1;
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent]) (XEvent *) = {
@@ -1091,7 +1092,7 @@ focusstack(const Arg *arg)
 
 	if (!selmon->sel)
 		return;
-	if (arg->i > 0) {
+	if ((arg->i > 0) || ((arg->i == 0) && (lastfocus == 1) )) {
 		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
 		if (!c)
 			for (c = selmon->clients; c && !ISVISIBLE(c); c = c->next);
@@ -1108,6 +1109,9 @@ focusstack(const Arg *arg)
 		focus(c);
 		restack(selmon);
 	}
+    if (arg->i != 0)
+        lastfocus = arg->i;
+    lastfocus *= -1;
 }
 
 Atom
