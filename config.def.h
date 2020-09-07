@@ -76,23 +76,29 @@ static const char *delwall[] = { "del_wallpaper", NULL };
 static const char *ssfull[] = { "gnome-screenshot", NULL };
 static const char *ssi[] = { "gnome-screenshot", "-i", NULL };
 static const char *mylock[] = { "mylock", NULL };
-static const char *mynote[] = { "save2note", NULL };
+//static const char *mynote[] = { "save2note", NULL };
 static const char *toggleck[] = { "toggleck", NULL };
 static const char *updateck[] = { "updateck", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
 	{ MODKEY,                       XK_t,      spawn,          {.v = rofitranscmd} },
 	{ MODKEY|ControlMask,                       XK_t,      spawn,          {.v = mydict} },
-	{ MODKEY,                       XK_s,      spawn,          {.v = mynote} },
+	//{ MODKEY,                       XK_s,      spawn,          {.v = mynote} },
 	{ MODKEY,                       XK_x,      spawn,          {.v = rofidircmd} },
 	{ MODKEY,             XK_Return, spawn,          {.v = termcmd } },
 	{ Mod1Mask,                       XK_f,      togglebar,      {0} },
-	{ Mod1Mask,                       XK_Tab,      focusstack,     {.i = +1 } },
+	{ Mod1Mask,                       XK_Tab,      focusstack,     {.i = 0 } },
+	{ Mod1Mask,                       XK_k,      focusstack,     {.i = +1 } },
+	{ Mod1Mask,                       XK_j,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_q,      incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_a,      incnmaster,     {.i = -1 } },
+	{ Mod1Mask,                       XK_h,      setmfact,       {.f = -0.05} },
+	{ Mod1Mask,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY,                       XK_comma, zoom,           {0} },
@@ -145,6 +151,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      setlayout,      {.v=&gridlayout} },
 	{ 0,             XK_Super_L,      holdbar,           {0} },
 	{ MODKEY,                       XK_r,     xrdb,           {.v = NULL } },
+	{ Mod1Mask,                       XK_Return,  togglescratch,  {.v = scratchpadcmd } },
 };
 
 /* button definitions */

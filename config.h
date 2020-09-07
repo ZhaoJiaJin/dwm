@@ -79,6 +79,8 @@ static const char *mylock[] = { "mylock", NULL };
 //static const char *mynote[] = { "save2note", NULL };
 static const char *toggleck[] = { "toggleck", NULL };
 static const char *updateck[] = { "updateck", NULL };
+static const char scratchpadname[] = "scratchpad";
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_d,      spawn,          {.v = roficmd} },
@@ -149,6 +151,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_g,      setlayout,      {.v=&gridlayout} },
 	{ 0,             XK_Super_L,      holdbar,           {0} },
 	{ MODKEY,                       XK_r,     xrdb,           {.v = NULL } },
+	{ Mod1Mask,                       XK_Return,  togglescratch,  {.v = scratchpadcmd } },
 };
 
 /* button definitions */
